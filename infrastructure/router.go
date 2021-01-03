@@ -20,6 +20,7 @@ func Router() *echo.Echo {
 	healthCheckHandler := handlers.NewHealthCheckHandler()
 	helloWorldHandler := handlers.NewHelloWorldHandler()
 
+	e.GET("/", healthCheckHandler.HealthCheck())
 	e.GET("/healthcheck", healthCheckHandler.HealthCheck())
 	e.GET(basePath+"/v1/helloworld", helloWorldHandler.SayHelloWorld())
 	e.GET(basePath+"/v1/app", AppHandler.GetAppInfo())
